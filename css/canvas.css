@@ -6,8 +6,15 @@
 .cv-viewport { position:fixed; inset:0; overflow:hidden; cursor:grab; background:var(--surface-2); touch-action:none; z-index:1; }
 .cv-viewport.panning { cursor:grabbing; }
 .cv-canvas { position:absolute; width:2050px; height:2075px; will-change:transform;
-  background-image:url('../assets/board-pattern.jpg');
-  background-size:460px; background-repeat:repeat; }
+  /* polka dots drawn in CSS rather than tiled from a JPEG: crisp at any zoom,
+     no compression grain, and no image request. Geometry measured from the
+     original art - 17px dot on a staggered 66x64 grid, shown at 0.625 scale. */
+  background-color:#d0ecfc;
+  background-image:
+    radial-gradient(#fdfdfd 5.3px, transparent 5.6px),
+    radial-gradient(#fdfdfd 5.3px, transparent 5.6px);
+  background-size:42px 40px;
+  background-position:0 0, 21px 20px; }
 
 .cv-card { position:absolute; margin:0; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card);
   box-shadow:var(--shadow); transform:rotate(var(--tilt, 0deg)); user-select:none; -webkit-user-select:none;
