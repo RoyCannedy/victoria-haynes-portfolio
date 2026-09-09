@@ -154,7 +154,7 @@ if (zoomables.length) {
 const vp = document.getElementById('vp');
 const cvCanvas = document.getElementById('canvas');
 function initCanvas() {
-  const CW = 3700, CH = 2650;
+  const CW = 2050, CH = 2047;
   const SCALE = 0.85;            // board zoom on load
   let cx = 0, cy = 0, zTop = 20;
   cvCanvas.style.transformOrigin = '0 0';
@@ -167,13 +167,16 @@ function initCanvas() {
     cvCanvas.style.transform = 'translate(' + cx + 'px,' + cy + 'px) scale(' + SCALE + ')';
   };
 
-  // start centered on the intro card
+  // open framed on her photo + the intro together, so her face is on screen
   const intro = document.querySelector('.card-intro');
-  const centerOn = el => {
-    cx = -((el.offsetLeft + el.offsetWidth / 2) * SCALE - innerWidth / 2);
-    cy = -((el.offsetTop + el.offsetHeight / 2) * SCALE - innerHeight / 2);
+  const face = cvCanvas.querySelector('.card-face');
+  const frameHome = () => {
+    const top = face ? Math.min(face.offsetTop, intro.offsetTop) : intro.offsetTop;
+    const bottom = intro.offsetTop + intro.offsetHeight;
+    cx = -((intro.offsetLeft + intro.offsetWidth / 2) * SCALE - innerWidth / 2);
+    cy = -(((top + bottom) / 2) * SCALE - innerHeight / 2);
   };
-  centerOn(intro);
+  frameHome();
   clampPan(); apply();
   addEventListener('resize', () => { clampPan(); apply(); });
 
