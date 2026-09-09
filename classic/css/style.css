@@ -498,3 +498,50 @@ footer { border-top:1px solid var(--line); padding:28px 0 40px; }
 .pc-grid a { font-size:17px; font-weight:500; color:var(--ink); text-decoration:none; }
 .pc-grid a:hover { color:var(--accent-text); }
 @media (max-width:600px) { .pc-grid { gap:28px; flex-direction:column; } }
+
+/* ============ buying page: comparison index + project hierarchy ============ */
+
+/* the five projects compared, so a recruiter can pick before scrolling */
+.proj-index { overflow-x:auto; }
+.proj-index table { width:100%; border-collapse:collapse; font-size:14.5px;
+  font-variant-numeric:tabular-nums; }
+.proj-index caption { text-align:left; }
+.proj-index th, .proj-index td { text-align:left; padding:14px 20px 14px 0; vertical-align:top;
+  border-bottom:1px solid var(--line); }
+.proj-index thead th { font-size:12px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--muted); padding-bottom:10px; }
+.proj-index tbody th { font-weight:600; color:var(--ink); white-space:nowrap; padding-right:32px; }
+.proj-index tbody th a { color:inherit; text-decoration:none; border-bottom:1px solid var(--line); }
+.proj-index tbody th a:hover { color:var(--accent-text); border-bottom-color:currentColor; }
+.proj-index td { color:var(--muted); }
+.proj-index tbody tr:last-child th, .proj-index tbody tr:last-child td { border-bottom:0; }
+@media (max-width:760px) {
+  .proj-index table, .proj-index thead, .proj-index tbody, .proj-index tr, .proj-index th, .proj-index td { display:block; }
+  .proj-index thead { display:none; }
+  .proj-index tbody tr { padding:16px 0; border-bottom:1px solid var(--line); }
+  .proj-index tbody tr:last-child { border-bottom:0; }
+  .proj-index th, .proj-index td { border:0; padding:2px 0; white-space:normal; }
+  .proj-index tbody th { font-size:16px; margin-bottom:5px; }
+  .proj-index td + td::before { content:"\00b7\00a0"; color:var(--line); }
+  .proj-index td { display:inline; }
+}
+
+/* prose beside a scannable fact rail; lead project reads first */
+.proj { scroll-margin-top:88px; }
+.proj .wrap > p { max-width:68ch; }
+.proj-lead .h2 { font-size:clamp(26px, 3.1vw, 38px); }
+.proj-spec { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:20px 32px;
+  margin:0 0 30px; padding:22px 0 0; border-top:1px solid var(--line); }
+.proj-spec dt { font-size:11.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:5px; }
+.proj-spec dd { margin:0; font-size:15px; font-weight:500; color:var(--ink); line-height:1.35;
+  font-variant-numeric:tabular-nums; }
+
+/* ============ browser surfaces the design should own ============ */
+::selection { background:color-mix(in srgb, var(--accent) 26%, transparent); color:var(--ink); }
+:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:3px; }
+a { text-underline-offset:3px; }
+input, textarea { caret-color:var(--accent); }
+
+@media (max-width:900px) { .proj-spec { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+@media (max-width:520px) { .proj-spec { grid-template-columns:1fr; } }
