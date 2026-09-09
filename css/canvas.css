@@ -5,9 +5,14 @@
 
 .cv-viewport { position:fixed; inset:0; overflow:hidden; cursor:grab; background:var(--surface-2); touch-action:none; z-index:1; }
 .cv-viewport.panning { cursor:grabbing; }
-.cv-canvas { position:absolute; width:2050px; height:2047px;
-  background-image:radial-gradient(color-mix(in srgb, var(--ink) 15%, transparent) 1.2px, transparent 1.2px);
-  background-size:26px 26px; will-change:transform; }
+.cv-canvas { position:absolute; width:2050px; height:2047px; will-change:transform;
+  background-color:var(--surface-2);
+  background-image:
+    radial-gradient(55% 42% at 22% 18%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 72%),
+    radial-gradient(48% 38% at 80% 30%, color-mix(in srgb, #6d7cc9 16%, transparent), transparent 72%),
+    radial-gradient(52% 45% at 62% 82%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 72%),
+    radial-gradient(color-mix(in srgb, var(--ink) 13%, transparent) 1.2px, transparent 1.2px);
+  background-size:auto, auto, auto, 26px 26px; }
 
 .cv-card { position:absolute; margin:0; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-card);
   box-shadow:var(--shadow); transform:rotate(var(--tilt, 0deg)); user-select:none; -webkit-user-select:none;
