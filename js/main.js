@@ -154,7 +154,7 @@ if (zoomables.length) {
 const vp = document.getElementById('vp');
 const cvCanvas = document.getElementById('canvas');
 function initCanvas() {
-  const CW = 2050, CH = 2047;
+  const CW = 2050, CH = 2075;
   const SCALE = 0.85;            // board zoom on load
   let cx = 0, cy = 0, zTop = 20;
   cvCanvas.style.transformOrigin = '0 0';

@@ -5,7 +5,7 @@
 
 .cv-viewport { position:fixed; inset:0; overflow:hidden; cursor:grab; background:var(--surface-2); touch-action:none; z-index:1; }
 .cv-viewport.panning { cursor:grabbing; }
-.cv-canvas { position:absolute; width:2050px; height:2047px; will-change:transform;
+.cv-canvas { position:absolute; width:2050px; height:2075px; will-change:transform;
   background-image:url('../assets/board-pattern.jpg');
   background-size:460px; background-repeat:repeat; }
 
