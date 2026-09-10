@@ -68,15 +68,42 @@
 
 /* ---------- mobile: canvas collapses to a normal stacked page ---------- */
 @media (max-width:767px) {
-  .cv-page { overflow:auto; height:auto; }
+  /* back to normal document flow; the board's fixed viewport is desktop-only */
+  .cv-page { overflow:visible; height:auto; }
   .cv-page .nav { position:sticky; }
-  .cv-viewport { position:static; overflow:visible; cursor:default; background:var(--bg); touch-action:auto; }
-  .cv-canvas { position:static; width:auto; height:auto; background:none; transform:none !important;
-    display:grid; gap:18px; padding:24px 20px 48px; }
-  .cv-card { position:static !important; transform:none !important; width:auto; touch-action:auto; cursor:default; }
-  .cv-polaroid img { aspect-ratio:4/3; }
+  .cv-viewport { position:static; overflow:visible; cursor:default; touch-action:auto;
+    /* keep the polka dots on phones - they are the site's identity, and dropping
+       them left a flat blue page that looked like a different site entirely */
+    background-color:#d0ecfc;
+    background-image:
+      radial-gradient(#fdfdfd 4.2px, transparent 4.5px),
+      radial-gradient(#fdfdfd 4.2px, transparent 4.5px);
+    background-size:34px 32px; background-position:0 0, 17px 16px; }
+  .cv-canvas { position:static; width:auto !important; height:auto !important; background:none;
+    transform:none !important; display:grid; grid-template-columns:1fr 1fr; gap:14px;
+    padding:18px 14px 44px; align-items:start; }
+
+  /* inline pixel widths from the desktop board would otherwise survive on phones */
+  .cv-card { position:static !important; transform:none !important;
+    width:auto !important; max-width:100% !important; touch-action:auto; cursor:default; }
+
+  /* the cards that matter get the full width; photos pair up two-across,
+     which halves a 13-screen scroll */
+  .card-intro, .cv-project, .cv-note, .cv-job { grid-column:1 / -1; }
+  .cv-polaroid { grid-column:auto; }
+  /* two classes so this beats the .cv-polaroid rule above it */
+  .cv-polaroid.card-face { grid-column:1 / -1; }
+
+  .cv-polaroid img { aspect-ratio:1/1; width:100%; object-fit:cover; }
+  .cv-polaroid.card-face img { aspect-ratio:4/3; object-fit:contain; background:#e9eef2; }
+  .cv-polaroid figcaption { font-size:11.5px; padding-top:6px; }
+  .cv-project img { aspect-ratio:16/9; }
   .cv-sticker, .cv-hint, .intro-peek { display:none; }
-  .card-intro { padding:28px 24px; }
+  .card-intro { padding:26px 22px; }
+  .card-intro h1 { font-size:27px; line-height:1.16; }
+  .card-intro p { font-size:15px; }
+  .cv-note, .cv-job { padding:20px 22px; }
+  .cv-project-label { font-size:18px; padding:14px 18px 16px; }
 }
 
 /* job cards on the board */
