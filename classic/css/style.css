@@ -506,3 +506,10 @@ footer { border-top:1px solid var(--line); padding:28px 0 40px; }
 .pc-grid a { font-size:17px; font-weight:500; color:var(--ink); text-decoration:none; }
 .pc-grid a:hover { color:var(--accent-text); }
 @media (max-width:600px) { .pc-grid { gap:28px; flex-direction:column; } }
+
+/* hero now carries the headline and full bio, so it needs its own scale */
+.hero-sub { font-size:clamp(22px, 2.5vw, 30px); line-height:1.18; letter-spacing:-.01em;
+  margin:26px 0 14px; }
+.hero-bio { font-size:15.5px; line-height:1.6; max-width:60ch; }
+.hero-copy .hero-ctas { margin-top:26px; }
+@media (max-width:900px) { .hero-sub { margin-top:20px; } }
