@@ -513,3 +513,6 @@ footer { border-top:1px solid var(--line); padding:28px 0 40px; }
 .hero-bio { font-size:15.5px; line-height:1.6; max-width:60ch; }
 .hero-copy .hero-ctas { margin-top:26px; }
 @media (max-width:900px) { .hero-sub { margin-top:20px; } }
+
+/* counting digits must not reflow the stat row */
+.fact b { font-variant-numeric:tabular-nums; display:inline-block; }

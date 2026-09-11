@@ -284,3 +284,51 @@ document.querySelectorAll('[data-carousel]').forEach(car => {
   addEventListener('resize', sync);
   sync();
 });
+
+// ---------- stat counters climb from zero when they scroll into view ----------
+const factNums = document.querySelectorAll('.fact b');
+if (factNums.length) {
+  const parse = el => {
+    const raw = el.textContent.trim();
+    const m = raw.match(/^([^\d]*)([\d,]+)(.*)$/);
+    if (!m) return null;
+    return { prefix: m[1], target: parseInt(m[2].replace(/,/g, ''), 10), suffix: m[3], raw };
+  };
+  const specs = Array.from(factNums).map(el => ({ el, ...(parse(el) || {}) }));
+
+  if (reduceMotion) {
+    // leave the final values in place
+  } else {
+    // hold the final width so the row does not jump as digits are added
+    specs.forEach(s => { if (s.target != null) s.el.style.minWidth = s.el.offsetWidth + 'px'; });
+
+    const run = s => {
+      if (s.target == null || s.done) return;
+      s.done = true;
+      const dur = 1100 + Math.min(s.target, 400);
+      const t0 = performance.now();
+      const tick = now => {
+        const p = Math.min(1, (now - t0) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);          // ease-out, matches the page's motion
+        s.el.textContent = s.prefix + Math.round(s.target * eased).toLocaleString() + s.suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      s.el.textContent = s.prefix + '0' + s.suffix;
+      requestAnimationFrame(tick);
+    };
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) { run(specs.find(s => s.el === en.target)); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.5 });
+      specs.forEach(s => {
+        if (s.el.getBoundingClientRect().top < innerHeight * 0.9) run(s);  // already on screen
+        else io.observe(s.el);
+      });
+    } else {
+      specs.forEach(run);
+    }
+  }
+}
