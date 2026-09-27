@@ -1,30 +1,39 @@
-# Victoria Haynes — Apparel Merchandising Portfolio
+# Victoria Haynes Portfolio
 
-Portfolio site for Victoria Haynes, Baylor University Apparel Merchandising (December 2026).
+A fully self-contained static site. No build step, no dependencies, no Wix.
+Every image, font, and the resume PDF live in this repo.
 
-**Live site:** https://victoriashaynes.github.io/
+Live at https://victoriashaynes.github.io/victoria-haynes-portfolio/
 
 ## Two versions
 
-| | Path | Homepage |
-|---|---|---|
-| **Board** (live) | `/` | One large draggable pin board — every project, photo, and job as a card you can move around |
-| **Classic** | `/classic/` | Traditional scrolling homepage with a pin board section |
+The **main site** is at the root: a normal scrolling portfolio. This is the one
+in use.
 
-Both share the same inner pages: Resume, Chi Omega Merchandise, Buying & Product Development, Technical Flats & Illustration, Photography, and Contact.
+The **board** version lives in `board/` — the same content as a draggable pin
+board. It is kept but no longer linked from anywhere, so nothing points at it
+unless you share the URL directly.
 
-## Built with
+Each folder is self-contained: its own `css/`, `js/`, `assets/`, `fonts/`, and
+page files. Shared pages (resume, projects, contact) exist in both, so a copy
+change needs making in both places.
 
-Plain HTML, CSS, and JavaScript — no build step, no dependencies. Fonts and images are self-hosted, so the site works offline and loads fast.
-
-Features include a preloader, typewriter headline, draggable canvas and magnet boards, scroll-driven timelines, image carousels, a lightbox, and full light/dark theme support.
+## Pages
+- index.html — home: hero with her bio, stats that count up, project tiles
+- resume.html — full resume, PDF preview and download
+- merchandise.html / buying.html / flats.html / photography.html — project pages
+- contact.html
 
 ## Editing
+- Text: edit the HTML directly, it is plain HTML.
+- Colors and fonts: tokenized at the top of `css/style.css`.
+- New merch designs: drop a JPG in `assets/merch/` and copy a figure block in
+  `merchandise.html`.
+- Replacing the resume: swap `assets/victoria-haynes-resume.pdf`, then
+  regenerate the on-page preview with
+  `qlmanage -t -s 1600 -o . victoria-haynes-resume.pdf` and rename the output to
+  `assets/resume-preview.png`.
 
-Open any `.html` file and edit directly. To preview locally:
-
-```bash
-python3 -m http.server 4173
-```
-
-Then visit http://localhost:4173
+## Publishing
+GitHub Pages serves `main` from the repo root. Push and it deploys; allow a
+minute, and hard-refresh since CSS caches for 10 minutes.

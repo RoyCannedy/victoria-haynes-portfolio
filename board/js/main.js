@@ -150,6 +150,98 @@ if (zoomables.length) {
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 }
 
+// ---------- freeform canvas (pin variant homepage) ----------
+const vp = document.getElementById('vp');
+const cvCanvas = document.getElementById('canvas');
+function initCanvas() {
+  const CW = 2050, CH = 2075;
+  const SCALE = 0.85;            // board zoom on load
+  let cx = 0, cy = 0, zTop = 20;
+  cvCanvas.style.transformOrigin = '0 0';
+  const clampPan = () => {
+    // the canvas paints at CW*SCALE, so clamp against the scaled size
+    cx = Math.min(0, Math.max(Math.min(0, innerWidth - CW * SCALE), cx));
+    cy = Math.min(0, Math.max(Math.min(0, innerHeight - CH * SCALE), cy));
+  };
+  const apply = () => {
+    cvCanvas.style.transform = 'translate(' + cx + 'px,' + cy + 'px) scale(' + SCALE + ')';
+  };
+
+  // open framed on her photo + the intro together, so her face is on screen
+  const intro = document.querySelector('.card-intro');
+  const face = cvCanvas.querySelector('.card-face');
+  const frameHome = () => {
+    const top = face ? Math.min(face.offsetTop, intro.offsetTop) : intro.offsetTop;
+    const bottom = intro.offsetTop + intro.offsetHeight;
+    cx = -((intro.offsetLeft + intro.offsetWidth / 2) * SCALE - innerWidth / 2);
+    cy = -(((top + bottom) / 2) * SCALE - innerHeight / 2);
+  };
+  frameHome();
+  clampPan(); apply();
+  addEventListener('resize', () => { clampPan(); apply(); });
+
+  // pan by dragging the background
+  let panning = false, px, py, pcx, pcy;
+  const hint = document.querySelector('.cv-hint');
+  const fadeHint = () => { if (hint) hint.classList.add('faded'); };
+  vp.addEventListener('pointerdown', e => {
+    if (e.target.closest('.cv-card, a, button')) return;
+    panning = true; try { vp.setPointerCapture(e.pointerId); } catch (err) {}
+    px = e.clientX; py = e.clientY; pcx = cx; pcy = cy;
+    vp.classList.add('panning'); fadeHint();
+  });
+  vp.addEventListener('pointermove', e => {
+    if (!panning) return;
+    cx = pcx + e.clientX - px; cy = pcy + e.clientY - py;
+    clampPan(); apply();
+  });
+  const endPan = () => { panning = false; vp.classList.remove('panning'); };
+  vp.addEventListener('pointerup', endPan);
+  vp.addEventListener('pointercancel', endPan);
+
+  // wheel / trackpad pans too
+  vp.addEventListener('wheel', e => {
+    e.preventDefault(); fadeHint();
+    cx -= e.deltaX; cy -= e.deltaY;
+    clampPan(); apply();
+  }, { passive: false });
+
+  // draggable cards; a small movement still counts as a click on link cards
+  cvCanvas.querySelectorAll('.cv-card').forEach(card => {
+    let sx, sy, bx, by, dragging = false, moved = 0;
+    card.addEventListener('pointerdown', e => {
+      if (e.target.closest('a, button') && !card.dataset.href) return;
+      dragging = true; moved = 0;
+      try { card.setPointerCapture(e.pointerId); } catch (err) {}
+      sx = e.clientX; sy = e.clientY;
+      bx = parseFloat(card.dataset.x || '0'); by = parseFloat(card.dataset.y || '0');
+      card.style.zIndex = ++zTop; card.classList.add('dragging');
+      if (card.dataset.href) e.preventDefault();
+    });
+    card.addEventListener('pointermove', e => {
+      if (!dragging) return;
+      const dx = (e.clientX - sx) / SCALE, dy = (e.clientY - sy) / SCALE;
+      moved = Math.max(moved, Math.hypot(e.clientX - sx, e.clientY - sy));
+      card.dataset.x = bx + dx; card.dataset.y = by + dy;
+      card.style.transform = 'translate(' + (bx + dx) + 'px,' + (by + dy) + 'px) rotate(var(--tilt, 0deg))';
+    });
+    card.addEventListener('pointerup', () => {
+      if (!dragging) return;
+      dragging = false; card.classList.remove('dragging');
+      if (moved < 6 && card.dataset.href) location.href = card.dataset.href;
+    });
+    card.addEventListener('pointercancel', () => { dragging = false; card.classList.remove('dragging'); });
+    if (card.dataset.href) card.addEventListener('click', e => e.preventDefault());
+  });
+}
+if (vp && cvCanvas) {
+  const mq = matchMedia('(min-width: 768px)');
+  let canvasInited = false;
+  const maybeInit = () => { if (mq.matches && !canvasInited) { canvasInited = true; initCanvas(); } };
+  maybeInit();
+  mq.addEventListener('change', maybeInit);
+}
+
 // ---------- scroll timeline (adapted from the Vertical timeline section) ----------
 const tls = document.querySelectorAll('.tl');
 if (tls.length) {
@@ -284,51 +376,3 @@ document.querySelectorAll('[data-carousel]').forEach(car => {
   addEventListener('resize', sync);
   sync();
 });
-
-// ---------- stat counters climb from zero when they scroll into view ----------
-const factNums = document.querySelectorAll('.fact b');
-if (factNums.length) {
-  const parse = el => {
-    const raw = el.textContent.trim();
-    const m = raw.match(/^([^\d]*)([\d,]+)(.*)$/);
-    if (!m) return null;
-    return { prefix: m[1], target: parseInt(m[2].replace(/,/g, ''), 10), suffix: m[3], raw };
-  };
-  const specs = Array.from(factNums).map(el => ({ el, ...(parse(el) || {}) }));
-
-  if (reduceMotion) {
-    // leave the final values in place
-  } else {
-    // hold the final width so the row does not jump as digits are added
-    specs.forEach(s => { if (s.target != null) s.el.style.minWidth = s.el.offsetWidth + 'px'; });
-
-    const run = s => {
-      if (s.target == null || s.done) return;
-      s.done = true;
-      const dur = 1100 + Math.min(s.target, 400);
-      const t0 = performance.now();
-      const tick = now => {
-        const p = Math.min(1, (now - t0) / dur);
-        const eased = 1 - Math.pow(1 - p, 3);          // ease-out, matches the page's motion
-        s.el.textContent = s.prefix + Math.round(s.target * eased).toLocaleString() + s.suffix;
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      s.el.textContent = s.prefix + '0' + s.suffix;
-      requestAnimationFrame(tick);
-    };
-
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(en => {
-          if (en.isIntersecting) { run(specs.find(s => s.el === en.target)); io.unobserve(en.target); }
-        });
-      }, { threshold: 0.5 });
-      specs.forEach(s => {
-        if (s.el.getBoundingClientRect().top < innerHeight * 0.9) run(s);  // already on screen
-        else io.observe(s.el);
-      });
-    } else {
-      specs.forEach(run);
-    }
-  }
-}

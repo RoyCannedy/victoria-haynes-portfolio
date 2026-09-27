@@ -9,9 +9,8 @@
 <link rel="preload" href="fonts/satoshi-900-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/satoshi-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/canvas.css">
 </head>
-<body class="cv-page">
+<body>
 
 <div class="loader" id="loader" aria-hidden="true">
   <div>
@@ -30,7 +29,8 @@
       <li class="menu-wrap">
         <button class="menu-btn" aria-haspopup="true" aria-expanded="false">Menu <svg width="11" height="7" viewBox="0 0 11 7" fill="none" aria-hidden="true"><path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <div class="menu-drop" hidden>
-          <a href="index.html">The board</a>
+          <a href="index.html">Home</a>
+          <a href="#projects">All projects</a>
           <div class="menu-sep"></div>
           <a href="merchandise.html">Chi Omega Merchandise</a>
           <a href="buying.html">Buying &amp; Product Development</a>
@@ -46,212 +46,182 @@
   </div>
 </header>
 
-<main class="cv-viewport" id="vp">
-  <div class="cv-canvas" id="canvas">
-
-    <figure class="cv-card cv-polaroid card-face" style="left:920px; top:536px; width:200px; --tilt:-2deg">
-      <img src="assets/headshot.png" alt="Hi, it's me" loading="lazy" data-zoom>
-      <figcaption>Hi, it's me</figcaption>
-    </figure>
-
-    <div class="cv-card card-intro" style="left:770px; top:790px;">
-      <h1>Merchandising, from concept to <span class="sr-only">checkout</span><span class="type-wrap" aria-hidden="true"><span id="typed" class="em-word">checkout</span><span class="caret"></span></span>.</h1>
-      <p>I am a senior at Baylor University graduating in December of 2026 with a degree in Apparel Merchandising and a Minor in Entrepreneurship and Corporate Innovations. I am a creative product development professional skilled in trend research, concept creation, and building market-ready assortments.</p>
-      <p>I am experienced in aligning materials, colors, and design details with consumer insights and brand strategy, with hands-on experience in buying, assortment planning, and advanced Excel for data analysis and inventory management. Take a look at some of my projects to get to know more about me!</p>
-      <div class="card-ctas">
-        <a class="btn btn-primary" href="contact.html">Contact</a>
-        <a class="btn btn-ghost" href="resume.html">Resume</a>
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1 class="display reveal">Victoria <em>Haynes</em></h1>
+        <h2 class="hero-sub reveal reveal-d1">Merchandising, from concept to <span class="sr-only">checkout</span><span class="type-wrap" aria-hidden="true"><span id="typed" class="em-word">checkout</span><span class="caret"></span></span>.</h2>
+        <p class="reveal reveal-d2 hero-bio">I am a senior at Baylor University graduating in December of 2026 with a degree in Apparel Merchandising and a Minor in Entrepreneurship and Corporate Innovations. I am a creative product development professional skilled in trend research, concept creation, and building market-ready assortments. I am experienced in aligning materials, colors, and design details with consumer insights and brand strategy, with hands-on experience in buying, assortment planning, and advanced Excel for data analysis and inventory management. Take a look at some of my projects to get to know more about me!</p>
+        <div class="hero-ctas reveal reveal-d2">
+          <a class="btn btn-primary" href="index.html#projects">View projects</a>
+          <a class="btn btn-ghost" href="resume.html">Resume</a>
+        </div>
+      </div>
+      <div class="hero-photo reveal reveal-d1">
+        <img src="assets/headshot.png" alt="Victoria Haynes, studio portrait in a blue striped shirt" width="996" height="1000" fetchpriority="high">
       </div>
     </div>
+  </section>
 
-    <a class="cv-card cv-project" style="left:445px; top:770px; --tilt:-3deg" href="merchandise.html" data-href="merchandise.html">
-      <img src="assets/merch/f01-homecoming-crewneck.jpg" alt="Chi Omega Merchandise Chair" loading="lazy" style="object-fit:cover;">
-      <span class="cv-project-label">Chi Omega Merchandise Chair <em>21 designs for 400+ members</em></span>
-    </a>
-
-    <a class="cv-card cv-project" style="left:1295px; top:770px; --tilt:3deg" href="buying.html" data-href="buying.html">
-      <img src="assets/buying/buyplan-01.jpg" alt="Buying &amp; Product Development" loading="lazy" style="object-fit:cover;">
-      <span class="cv-project-label">Buying &amp; Product Development <em>Buy plans, textiles, consumer research</em></span>
-    </a>
-
-    <a class="cv-card cv-project" style="left:451px; top:1064px; --tilt:2deg" href="flats.html" data-href="flats.html">
-      <img src="assets/flats/academy-01.png" alt="Technical Flats &amp; Illustration" loading="lazy" style="object-fit:contain;background:#fff;">
-      <span class="cv-project-label">Technical Flats &amp; Illustration <em>Adobe Illustrator line work</em></span>
-    </a>
-
-    <a class="cv-card cv-project" style="left:1281px; top:1097px; --tilt:-2deg" href="photography.html" data-href="photography.html">
-      <img src="assets/photo/pc-02.jpg" alt="Photography" loading="lazy" style="object-fit:cover;">
-      <span class="cv-project-label">Photography <em>Camp media and senior sessions</em></span>
-    </a>
-
-    <div class="cv-card cv-note" style="left:495px; top:520px; width:250px; --tilt:-2deg">
-      <h2>Resume</h2>
-      <p>Baylor University, Apparel Merchandising, December 2026.</p>
-      <a class="cv-link" href="resume.html">View resume</a>
-      <a class="cv-link" href="assets/victoria-haynes-resume.pdf" download>Download the PDF</a>
+  <section id="about">
+    <div class="wrap">
+      <div class="facts reveal">
+        <div class="fact"><b>21</b><span>merch designs produced in 2025</span></div>
+        <div class="fact"><b>400+</b><span>chapter members outfitted</span></div>
+        <div class="fact"><b>250</b><span>photos edited daily at Pine Cove</span></div>
+        <div class="fact"><b>3</b><span>fashion week seasons backstage</span></div>
+      </div>
     </div>
+  </section>
 
-    <div class="cv-card cv-note" style="left:1290px; top:520px; width:250px; --tilt:2deg">
-      <h2>Say hello</h2>
-      <a class="cv-link" href="mailto:victoria_haynes1@baylor.edu">victoria_haynes1@baylor.edu</a>
-      <a class="cv-link" href="tel:+17046086362">(704) 608-6362</a>
-      <a class="cv-link" href="https://www.linkedin.com/in/victoriahaynes-victoriahaynes/" target="_blank" rel="noopener">LinkedIn</a>
+  <section id="projects">
+    <div class="wrap">
+      <div class="projects-head">
+        <span class="eyebrow reveal">Selected work</span>
+        <h2 class="h2 reveal">Projects</h2>
+      </div>
+      <div class="bento">
+        <a class="tile tile-lg reveal" href="merchandise.html">
+          <div class="tile-media tile-collage">
+            <img src="assets/merch/f01-homecoming-crewneck.jpg" alt="Homecoming 2025 crewneck design proof">
+            <img src="assets/merch/s02-sing-tee.jpg" alt="Sing 2025 t-shirt design proof">
+            <img src="assets/merch/f05-football-crewneck.jpg" alt="Football 2025 crewneck design proof">
+          </div>
+          <span class="tile-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div class="tile-body">
+            <h3 class="h3">Chi Omega Merchandise Chair</h3>
+            <p>21 apparel designs sourced, produced with B-Unlimited, and distributed to 400+ members.</p>
+          </div>
+        </a>
+        <a class="tile tile-md reveal reveal-d1" href="buying.html">
+          <div class="tile-media"><img src="assets/fabric-texture.jpg" alt="Draped fabric texture in soft neutrals"></div>
+          <span class="tile-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div class="tile-body">
+            <h3 class="h3">Buying and Product Development</h3>
+            <p>Six-month buy plans, assortment strategy, and textile testing backed by real sales data.</p>
+          </div>
+        </a>
+        <a class="tile tile-sm reveal" href="flats.html">
+          <div class="tile-media"><img src="assets/flats/academy-01.png" alt="Technical flat drawings for Academy Sports and Outdoors" style="object-fit:cover;background:#fff"></div>
+          <span class="tile-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div class="tile-body">
+            <h3 class="h3">Technical Flats and Illustration</h3>
+            <p>Adobe Illustrator flats spanning men's, women's, and youth assortments.</p>
+          </div>
+        </a>
+        <a class="tile tile-sm reveal reveal-d1" href="photography.html">
+          <div class="tile-media"><img src="assets/photo/pc-02.jpg" alt="Photograph from the Pine Cove gallery"></div>
+          <span class="tile-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div class="tile-body">
+            <h3 class="h3">Photography</h3>
+            <p>Camp media, senior portraits, and brand content shot on deadline.</p>
+          </div>
+        </a>
+      </div>
     </div>
+  </section>
 
-    <figure class="cv-card cv-polaroid" style="left:920px; top:1320px; width:165px; --tilt:-3.5deg">
-      <img src="assets/merch/f02-pigskin-tee.jpg" alt="Pigskin 2025" loading="lazy" data-zoom>
-      <figcaption>Pigskin 2025</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:920px; top:1560px; width:175px; --tilt:1.1deg">
-      <img src="assets/photo/pc-09.jpg" alt="On the swings" loading="lazy" data-zoom>
-      <figcaption>On the swings</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:694px; top:1359px; width:175px; --tilt:-4.6deg">
-      <img src="assets/flats/other-01.png" alt="Flat sketches" loading="lazy" data-zoom>
-      <figcaption>Flat sketches</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:920px; top:320px; width:165px; --tilt:3.2deg">
-      <img src="assets/merch/f05-football-crewneck.jpg" alt="Football crewneck" loading="lazy" data-zoom>
-      <figcaption>Football crewneck</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:1177px; top:1405px; width:175px; --tilt:4.7deg">
-      <img src="assets/photo/sr-04.jpg" alt="Baylor seniors" loading="lazy" data-zoom>
-      <figcaption>Baylor seniors</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:1120px; top:280px; width:175px; --tilt:-1.9deg">
-      <img src="assets/photo/tori-camera.jpg" alt="Camp photographer" loading="lazy" data-zoom>
-      <figcaption>Camp photographer</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:720px; top:280px; width:165px; --tilt:-3.5deg">
-      <img src="assets/merch/f12-crush-tee.jpg" alt="Crush 2025" loading="lazy" data-zoom>
-      <figcaption>Crush 2025</figcaption>
-    </figure>
-
-    <div class="cv-card cv-job" style="left:1640px; top:920px; --tilt:-1.3deg">
-      <span class="cv-when">April 2026</span>
-      <h3>NY Bridal Fashion Week Intern</h3>
-      <p>Netta BenShabu, New York City</p>
+  <section id="board">
+    <div class="wrap">
+      <h2 class="h2 reveal">The pin board</h2>
+      <p class="reveal reveal-d1" style="margin-bottom:32px">Favorites from the merch closet and the camera roll.<span class="board-hint"> Go ahead, drag them around.</span></p>
+      <div class="pinboard-wrap reveal reveal-d2">
+        <div class="char-peek" aria-hidden="true"><svg class="char char-b" viewBox="0 0 140 78" width="112" height="62">
+        <circle cx="70" cy="74" r="52" fill="var(--accent)"/>
+        <g class="lid">
+          <circle cx="52" cy="48" r="9.5" fill="#fff"/>
+          <circle class="pupil" cx="52" cy="48" r="4.2" fill="#241019"/>
+        </g>
+        <g class="lid">
+          <circle cx="88" cy="48" r="9.5" fill="#fff"/>
+          <circle class="pupil" cx="88" cy="48" r="4.2" fill="#241019"/>
+        </g>
+        <rect x="18" y="64" width="20" height="12" rx="6" fill="var(--accent)"/>
+        <rect x="102" y="64" width="20" height="12" rx="6" fill="var(--accent)"/>
+      </svg></div>
+        <div class="pinboard">
+          <figure class="pin" style="left:3%; top:8%; --tilt:-4deg">
+            <img src="assets/photo/pc-01.jpg" alt="Camper on the zipline at Pine Cove" loading="lazy">
+            <figcaption>Pine Cove, summer camp</figcaption>
+          </figure>
+          <figure class="pin" style="left:23%; top:46%; --tilt:3deg">
+            <img src="assets/merch/f01-homecoming-crewneck.jpg" alt="Homecoming 2025 crewneck proof" loading="lazy">
+            <figcaption>Homecoming 2025 drop</figcaption>
+          </figure>
+          <figure class="pin" style="left:41%; top:6%; --tilt:-2deg">
+            <img src="assets/resume/netta-1.jpg" alt="Backstage with Netta BenShabu bridal gowns" loading="lazy">
+            <figcaption>NYBFW backstage</figcaption>
+          </figure>
+          <figure class="pin" style="left:60%; top:44%; --tilt:5deg">
+            <img src="assets/photo/sr-01.jpg" alt="Baylor senior portrait session" loading="lazy">
+            <figcaption>Senior sessions</figcaption>
+          </figure>
+          <figure class="pin" style="left:79%; top:9%; --tilt:-5deg">
+            <img src="assets/merch/s06-tacky-prom-tee.jpg" alt="Tacky Prom 2025 t-shirt proof" loading="lazy">
+            <figcaption>Tacky Prom tee</figcaption>
+          </figure>
+          <figure class="pin" style="left:44%; top:52%; --tilt:2deg">
+            <img src="assets/photo/pc-09.jpg" alt="Girl smiling on a swing at Pine Cove" loading="lazy">
+            <figcaption>On the swings</figcaption>
+          </figure>
+          <figure class="pin pin-char" style="left:87%; top:56%; --tilt:7deg" aria-hidden="true">
+            <svg class="char char-a" viewBox="0 0 120 132" width="118" height="130">
+            <rect x="10" y="12" width="100" height="112" rx="46" fill="var(--accent)"/>
+            <g class="lid">
+              <circle cx="44" cy="62" r="10.5" fill="#fff"/>
+              <circle class="pupil" cx="44" cy="62" r="4.6" fill="#241019"/>
+            </g>
+            <g class="lid">
+              <circle cx="76" cy="62" r="10.5" fill="#fff"/>
+              <circle class="pupil" cx="76" cy="62" r="4.6" fill="#241019"/>
+            </g>
+            <path d="M48 84 Q60 94 72 84" stroke="#fff" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+            <circle cx="30" cy="78" r="5.5" fill="rgba(255,255,255,.28)"/>
+            <circle cx="90" cy="78" r="5.5" fill="rgba(255,255,255,.28)"/>
+          </svg>
+          </figure>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <figure class="cv-card cv-polaroid" style="left:240px; top:920px; width:175px; --tilt:1.2deg">
-      <img src="assets/photo/pc-01.jpg" alt="Zipline" loading="lazy" data-zoom>
-      <figcaption>Zipline</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:240px; top:680px; width:165px; --tilt:-3.0deg">
-      <img src="assets/merch/s02-sing-tee.jpg" alt="Sing 2025" loading="lazy" data-zoom>
-      <figcaption>Sing 2025</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:1640px; top:680px; width:175px; --tilt:2.7deg">
-      <img src="assets/resume/academy-presenting.jpg" alt="Academy presentation" loading="lazy" data-zoom>
-      <figcaption>Academy presentation</figcaption>
-    </figure>
-
-    <div class="cv-card cv-job" style="left:1320px; top:320px; --tilt:-1.0deg">
-      <span class="cv-when">June–Aug 2025</span>
-      <h3>Boys' Apparel Buying Intern</h3>
-      <p>Academy Sports + Outdoors</p>
+  <section id="experience">
+    <div class="wrap">
+      <h2 class="h2 reveal" style="margin-bottom:36px">Where I've worked</h2>
+      <div class="exp-list">
+        <div class="exp-row reveal">
+          <span class="exp-when">April 2026</span>
+          <span class="exp-role"><b>New York Bridal Fashion Week Intern</b><span>Backstage operations and styling for the Pre-Fall 2027 presentation</span></span>
+          <span class="exp-org">Netta BenShabu</span>
+        </div>
+        <div class="exp-row reveal reveal-d1">
+          <span class="exp-when">Summer 2025</span>
+          <span class="exp-role"><b>Boys' Apparel Buying Intern</b><span>End-to-end buying cycle, presented to the Executive Committee</span></span>
+          <span class="exp-org">Academy Sports + Outdoors</span>
+        </div>
+        <div class="exp-row reveal reveal-d2">
+          <span class="exp-when">2023 to 2024</span>
+          <span class="exp-role"><b>New York Fashion Week Volunteer</b><span>Backstage styling for NYFW BLK, Yirko Sivirich, and Christian Colorado</span></span>
+          <span class="exp-org">F/W 23 and S/S 24 shows</span>
+        </div>
+        <div class="exp-row reveal reveal-d3">
+          <span class="exp-when">2022 to 2024</span>
+          <span class="exp-role"><b>Retail Associate and Media Content Creator</b><span>Camp store management, vendor coordination, and daily social content</span></span>
+          <span class="exp-org">Pine Cove</span>
+        </div>
+      </div>
     </div>
-
-    <figure class="cv-card cv-polaroid" style="left:320px; top:1400px; width:165px; --tilt:2.0deg">
-      <img src="assets/merch/s06-tacky-prom-tee.jpg" alt="Tacky Prom" loading="lazy" data-zoom>
-      <figcaption>Tacky Prom</figcaption>
-    </figure>
-
-    <div class="cv-card cv-job" style="left:1566px; top:1425px; --tilt:-5.3deg">
-      <span class="cv-when">2021–2022</span>
-      <h3>Studio Associate</h3>
-      <p>Dish-It-Out Pottery, Charlotte NC</p>
-    </div>
-
-    <figure class="cv-card cv-polaroid" style="left:520px; top:280px; width:175px; --tilt:-5.4deg">
-      <img src="assets/photo/pc-13.jpg" alt="Camp days" loading="lazy" data-zoom>
-      <figcaption>Camp days</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:1120px; top:1720px; width:165px; --tilt:-3.8deg">
-      <img src="assets/merch/s07-intramural-jersey.jpg" alt="Intramural jersey" loading="lazy" data-zoom>
-      <figcaption>Intramural jersey</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:720px; top:1720px; width:175px; --tilt:-4.4deg">
-      <img src="assets/resume/greekwide-team.jpg" alt="Greekwide 2025" loading="lazy" data-zoom>
-      <figcaption>Greekwide 2025</figcaption>
-    </figure>
-
-    <div class="cv-card cv-job" style="left:1600px; top:480px; --tilt:-4.2deg">
-      <span class="cv-when">F/W 23 &amp; S/S 24</span>
-      <h3>New York Fashion Week Volunteer</h3>
-      <p>NYFW BLK, Yirko Sivirich</p>
-    </div>
-
-    <figure class="cv-card cv-polaroid" style="left:280px; top:440px; width:165px; --tilt:3.6deg">
-      <img src="assets/merch/f08-fall-pr-hat.jpg" alt="Fall PR hat" loading="lazy" data-zoom>
-      <figcaption>Fall PR hat</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:120px; top:1160px; width:175px; --tilt:-1.5deg">
-      <img src="assets/photo/sr-01.jpg" alt="Senior sessions" loading="lazy" data-zoom>
-      <figcaption>Senior sessions</figcaption>
-    </figure>
-
-    <div class="cv-card cv-job" style="left:1760px; top:1120px; --tilt:-5.0deg">
-      <span class="cv-when">Summers 2022–2024</span>
-      <h3>Retail Associate &amp; Media Creator</h3>
-      <p>Pine Cove Camps</p>
-    </div>
-
-    <figure class="cv-card cv-polaroid" style="left:920px; top:80px; width:165px; --tilt:0.4deg">
-      <img src="assets/merch/s05-moms-day-sweatshirt.jpg" alt="Mom's Day" loading="lazy" data-zoom>
-      <figcaption>Mom's Day</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:920px; top:1800px; width:175px; --tilt:-0.7deg">
-      <img src="assets/buying/textile-02.jpg" alt="Textile science testing" loading="lazy" data-zoom>
-      <figcaption>Textile science testing</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:1320px; top:1720px; width:175px; --tilt:3.7deg">
-      <img src="assets/buying/adobe-02.jpg" alt="Tordawg's brand" loading="lazy" data-zoom>
-      <figcaption>Tordawg's brand</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:520px; top:1720px; width:175px; --tilt:-3.5deg">
-      <img src="assets/flats/catalogue-01.png" alt="Catalogue project" loading="lazy" data-zoom>
-      <figcaption>Catalogue project</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:40px; top:920px; width:175px; --tilt:-0.8deg">
-      <img src="assets/resume/netta-1.jpg" alt="NYBFW backstage" loading="lazy" data-zoom>
-      <figcaption>NYBFW backstage</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:1560px; top:1600px; width:175px; --tilt:-1.6deg">
-      <img src="assets/buying/consumer-01.jpg" alt="Consumer profile" loading="lazy" data-zoom>
-      <figcaption>Consumer profile</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:1120px; top:40px; width:175px; --tilt:-2.0deg">
-      <img src="assets/photo/pc-06.jpg" alt="Pine Cove" loading="lazy" data-zoom>
-      <figcaption>Pine Cove</figcaption>
-    </figure>
-
-    <figure class="cv-card cv-polaroid" style="left:720px; top:40px; width:175px; --tilt:3.8deg">
-      <img src="assets/buying/sim-02.jpg" alt="Ulta buying simulation" loading="lazy" data-zoom>
-      <figcaption>Ulta buying simulation</figcaption>
-    </figure>
-
-  </div>
+  </section>
 </main>
 
-<div class="cv-hint" aria-hidden="true">Drag the board to explore</div>
+<footer>
+  <div class="wrap foot">
+    <span>Victoria Haynes, Waco TX</span>
+    <a href="mailto:victoria_haynes1@baylor.edu">victoria_haynes1@baylor.edu</a>
+    <a href="https://www.linkedin.com/in/victoriahaynes-victoriahaynes/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</footer>
 
 <script src="js/main.js"></script>
 </body>
