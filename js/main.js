@@ -299,9 +299,6 @@ if (factNums.length) {
   if (reduceMotion) {
     // leave the final values in place
   } else {
-    // hold the final width so the row does not jump as digits are added
-    specs.forEach(s => { if (s.target != null) s.el.style.minWidth = s.el.offsetWidth + 'px'; });
-
     const run = s => {
       if (s.target == null || s.done) return;
       s.done = true;
